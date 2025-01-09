@@ -1,6 +1,9 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
+// Adjusted import path for transportation image
+import transportationImage from '../../assets/images/transportation.png';
+
 const SignupScreen = () => {
   return (
     <View style={styles.container}>
@@ -9,7 +12,7 @@ const SignupScreen = () => {
 
       {/* Illustration */}
       <Image 
-        source={require('../assets/images/transportation.png')} 
+        source={transportationImage} // Use the transportation image here
         style={styles.image} 
       />
 

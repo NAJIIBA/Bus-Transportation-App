@@ -12,7 +12,7 @@ export default function Home() {
         <Text className="text-white text-3xl font-bold">Hey BSE!</Text>
         <Text className="text-white text-2xl">Halked Tageysa.</Text>
         <Image 
-          source={require('../assets/bus-icon.png')} 
+        source={require('../assets/bus.png')}
           className="w-24 h-12 self-center mt-2"
           resizeMode="contain"
         />

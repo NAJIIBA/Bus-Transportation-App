@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import transportationImage from '../assets/images/transportation.png'; // Ensure this file exists
 
 const LoginScreen = () => {
   return (
@@ -9,7 +10,7 @@ const LoginScreen = () => {
 
       {/* Illustration */}
       <Image 
-        source={require('../assets/images/transportation.png')} 
+        source={transportationImage} 
         style={styles.image} 
       />
 
@@ -18,8 +19,17 @@ const LoginScreen = () => {
       <Text style={styles.subtitleText}>kusoo dhowoow Socdaal Transpotation</Text>
 
       {/* Input Fields */}
-      <TextInput style={styles.input} placeholder="email" placeholderTextColor="gray" />
-      <TextInput style={styles.input} placeholder="password" placeholderTextColor="gray" secureTextEntry />
+      <TextInput 
+        style={styles.input} 
+        placeholder="email" 
+        placeholderTextColor="gray" 
+      />
+      <TextInput 
+        style={styles.input} 
+        placeholder="password" 
+        placeholderTextColor="gray" 
+        secureTextEntry 
+      />
 
       {/* Login Button */}
       <TouchableOpacity style={styles.loginButton}>

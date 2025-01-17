@@ -51,7 +51,9 @@ const Register = () => {
             className="mt-32"
           /> */}
 
-          <Text className="text-4xl my-4 text-red-600 font-bold">My Notes</Text>
+          <Text className="text-4xl my-4 text-red-600 font-bold">
+            Bus Transportation
+          </Text>
 
           <Text className="text-grey-600 my-4 text-xl font-semibold">
             Create an Account

@@ -1,74 +1,36 @@
-import { View, Text, TextInput, TouchableOpacity, Image } from 'react-native'
-import { StatusBar } from 'expo-status-bar'
-import { ArrowUpDown, Calendar } from 'lucide-react-native'
+import React, { useEffect, useState, useContext } from "react";
+import { View, Text, ActivityIndicator } from "react-native";
+import { useRouter } from "expo-router"; // For navigation
+import { AuthContext } from "./context/AuthContext"; // Import your context
 
+const IndexScreen = () => {
+  const router = useRouter();
+  const { token, isLoading } = useContext(AuthContext); // Access token and loading from context
+  const [isReady, setIsReady] = useState(false);
 
+  useEffect(() => {
+    if (!isLoading) {
+      // If token is found, navigate to the home screen, else navigate to the login screen
+      if (token) {
+        router.push("/HomeScreen"); // Redirect to home if user is authenticated
+      } else {
+        router.push("/(auth)/login"); // Redirect to login if no token is found
+      }
+      setIsReady(true);
+    }
+  }, [token, isLoading, router]);
 
-export default function Home() {
-  return (
-    <View className="flex-1 bg-white">
-      <StatusBar style="light" />
-      
-      {/* Header */}
-      <View className="bg-[#FF6B6B] pt-12 pb-4 px-4 rounded-b-3xl">
-        <Text className="text-white text-3xl font-bold">!</Text>
-        <Text className="text-white text-2xl">Halked Tageysa.</Text>
-      <Image 
-        source={require("../assets/images/images_bus.png")}
-      className="w-24 h-12 self-center mt-2" 
-      resizeMode="contain" 
-      />
-
+  if (!isReady || isLoading) {
+    // Display loading spinner while checking token
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size="large" color="#0000ff" />
+        <Text>Loading...</Text>
       </View>
+    );
+  }
 
-      {/* Main Content */}
-      <View className="flex-1 mx-4 -mt-6">
-        <View className="bg-[#FFA45B] p-6 rounded-3xl">
-          {/* From Input */}
-          <View className="bg-white rounded-lg mb-4">
-            <TextInput
-              placeholder="From"
-              className="p-4 text-gray-600"
-            />
-          </View>
+  return null; // No UI to render here, as we are handling the navigation
+};
 
-          {/* Swap Button */}
-          <TouchableOpacity className="absolute right-8 top-16 z-10 bg-[#FF6B6B] p-2 rounded-full">
-            <ArrowUpDown size={20} color="white" />
-          </TouchableOpacity>
-
-          {/* To Input */}
-          <View className="bg-white rounded-lg mb-6">
-            <TextInput
-              placeholder="To"
-              className="p-4 text-gray-600"
-            />
-          </View>
-
-          {/* Date Buttons */}
-          <View className="flex-row justify-between mb-6">
-            <TouchableOpacity className="bg-[#FF8C42] px-6 py-3 rounded-full">
-              <Text className="text-white font-semibold">MAANTA</Text>
-            </TouchableOpacity>
-            <TouchableOpacity className="bg-[#FF8C42] px-6 py-3 rounded-full">
-              <Text className="text-white font-semibold">BERRI</Text>
-            </TouchableOpacity>
-            <TouchableOpacity className="bg-[#FF8C42] px-6 py-3 rounded-full flex-row items-center">
-              <Calendar size={18} color="white" className="mr-1" />
-              <Text className="text-white font-semibold">DATE</Text>
-            </TouchableOpacity>
-          </View>
-
-          {/* Search Button */}
-          <TouchableOpacity className="bg-[#FF6B6B] py-4 rounded-full"
-            onPress={() => navigation.navigate('BusSelectionScreen')}
-            >
-            <Text className="text-white text-center text-lg font-bold">
-              Raadi Bus
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </View>
-  )
-}
+export default IndexScreen;

@@ -10,22 +10,25 @@ import {
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 
 const Login = () => {
+  const router = useRouter();
   return (
-    <SafeAreaView>
+    <>
+      <StatusBar style="auto" />
       <ScrollView>
         <View className="bg-white flex flex-col min-h-[83vh] items-center h-screen">
-        <Image
-          source={require('../../assets/images/transportation.png')}  // Correct path to image
-          style={{ width: 150, height: 150 }}
-          resizeMode="contain"
-          className="mt-32"
+          <Image
+            source={require("../../assets/images/transportation.png")} // Correct path to image
+            style={{ width: 150, height: 150 }}
+            resizeMode="contain"
+            className="mt-32"
           />
 
-
-          <Text className="text-4xl my-4 text-red-600 font-bold">SocdaalApp</Text>
+          <Text className="text-4xl my-4 text-red-600 font-bold">
+            Bust Transportation App
+          </Text>
 
           <Text className="text-grey-600 my-4 text-xl font-semibold">
             Sign In
@@ -50,6 +53,7 @@ const Login = () => {
             <View className="items-center mb-36 w-full">
               <TouchableOpacity
                 className="bg-yellow-500 px-4 py-3 rounded-full w-4/5 mb-2"
+                onPress={() => router.push("HomeScreen")}
               >
                 <Text className="text-white font-medium text-xl text-center">
                   Log In
@@ -65,8 +69,7 @@ const Login = () => {
           </View>
         </View>
       </ScrollView>
-      <StatusBar style="auto" />
-    </SafeAreaView>
+    </>
   );
 };
 
